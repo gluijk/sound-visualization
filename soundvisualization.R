@@ -1,5 +1,5 @@
 # Visualizaciones ad hoc de sonido con R
-# www.datosimagensonido.com
+# www.overfitting.net
 
 library(seewave)  # 'tico'
 library(tuneR)  # plot()
@@ -11,13 +11,13 @@ listen(tico)  # Escuchamos al pajarillo
 str(tico)  # Estructura de la clase 'Wave': longitud, canales, frec. muestreo,...
 
 
-# VISUALIZACIONES EST罭DAR
+# VISUALIZACIONES EST脕NDAR
 
-# Visualizaci髇 est醤dar del oscilograma
+# Visualizaci贸n est谩ndar del oscilograma
 plot(tico)
 plot(tico@left, type='l')
 
-# Visualizaci髇 est醤dar del espectrograma
+# Visualizaci贸n est谩ndar del espectrograma
 spectrogram(tico@left, fs=tico@samp.rate, maxfreq=10000,
     windowlength=15, timestep=1, preemphasisf=50000)
 
@@ -26,13 +26,13 @@ spectrogram(tico@left, fs=tico@samp.rate, maxfreq=10000,
 # VISUALIZACIONES AD HOC
 
 
-# Visualizaci髇 ad hoc del oscilograma
+# Visualizaci贸n ad hoc del oscilograma
 soundwave=tico@left
 N=77  # Muestras de forma de onda por valor final mostrado
 soundwave=soundwave[1:(floor(length(soundwave)/N)*N)]
 soundwave=floor(soundwave/32768*128)  # Rango 16 bits -> 8 bits
 
-L=length(soundwave)  # L siempre es m鷏tiplo entero de N
+L=length(soundwave)  # L siempre es m煤ltiplo entero de N
 soundbmp=array(0, c(L/N, 256))  # Rango -128..0..127
 
 for (i in 1:(L/N)) {
@@ -46,14 +46,14 @@ writeTIFF(soundbmp/max(soundbmp), "soundwave.tif",
     bits.per.sample=16, compression="LZW")
 
 
-# Visualizaci髇 ad hoc del espectrograma
+# Visualizaci贸n ad hoc del espectrograma
 # Leemos como imagen espectrograma monocromo (colors=F) de spectrogram()
 espectro=readTIFF("fft.tif", native=F, convert=F)
 
 TIEMPO=nrow(espectro)
 FRECUENCIA=ncol(espectro)
-SEPARACION=5  # Separaci髇 de las l韓eas
-ALTURA=117  # Altura en p韝eles de los m醲imos
+SEPARACION=5  # Separaci贸n de las l铆neas
+ALTURA=117  # Altura en p铆xeles de los m谩ximos
 
 espectrograma=array(0, c(TIEMPO*SEPARACION, FRECUENCIA))
 
