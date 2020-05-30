@@ -1,5 +1,6 @@
 # Visualizaciones ad hoc de sonido con R
 # www.overfitting.net
+# https://www.overfitting.net/2017/12/visualizaciones-ad-hoc-de-sonido-con-r.html
 
 library(seewave)  # 'tico'
 library(tuneR)  # plot()
